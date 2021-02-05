@@ -1,0 +1,25 @@
+{% extends "instagram/layout.html" %}
+{% load bootstrap4 %}
+{% block content %}
+<form action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {% bootstrap_form form %}
+<!--    <table>-->
+<!--        {{ form }}-->
+<!--    </table>-->
+    {% buttons %}
+        <button class="btn btn-primary">
+            저장
+        </button>
+    {% endbuttons %}
+    <input type="submit" value="저장" />
+
+</form>
+<hr/>
+{% if form.instance.author != '' %}
+Edit <a href="{{ form.instance.get_absolute_url }}" class="btn btn-secondary">게시글으로</a>
+{% else %}
+New <a href="{% url 'instagram:post_list' %}" class="btn btn-secondary">목록으로</a>
+{% endif %}
+
+{% endblock content %}

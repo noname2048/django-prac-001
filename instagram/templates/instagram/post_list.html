@@ -1,0 +1,55 @@
+{% extends "instagram/layout.html" %}
+
+{% load bootstrap4 %}
+
+{% block title %}
+instagram | post list
+{% endblock title %}
+
+{% block content %}
+<form action="" method="get">
+        <input type="text" name="q" value="{{ q }}"/>
+        <input type="submit" value="검색">
+    </form>
+    <a href="{% url 'instagram:post_new' %}" class="btn btn-primary btn-block mt-3 mb-3">새 포스팅 쓰기</a>
+    <table class="table table-bordered table-hover">
+        <thead>
+
+        </thead>
+        <tbody>
+            {% for post in post_list %}
+            <tr>
+                <td>
+                    {{ post.pk }}
+                </td>
+                <td>
+                    <a href="/instagram/{{ post.pk }}">
+                        {{ post.message }}
+                    </a>
+                    <a href="{% url 'instagram:post_detail' post.pk %}">
+                        {{ post.message }}
+                    </a>
+                    <a href="{# post.get_absolute_url #}">
+                        {{ post.message }}
+                    </a>
+                </td>
+                <td>
+                    {% if post.photo %}
+                        <img src="{{ post.photo.url }}" style="width:100px">
+                    {% else %}
+                        No Photo
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</form>
+
+{{ is_paginated }}
+{{ page_obj }}
+{% if is_paginated %}
+    {% bootstrap_pagination page_obj size="small" justify_content="center" %}
+{% endif %}
+
+{% endblock content %}
