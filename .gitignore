@@ -1,0 +1,13 @@
+### Django 3.1.5 Custom ###
+
+# 데이터베이스 파일
+db.sqlite3
+
+# media 폴더 전체
+media
+
+# 모든 로그
+*.log
+
+# 캐시 폴더 하위 파일
+__pycache__/
