@@ -11,3 +11,6 @@ media
 
 # 캐시 폴더 하위 파일
 __pycache__/
+
+# ipython notebook 임시저장파일
+.ipynb_checkpoints/
